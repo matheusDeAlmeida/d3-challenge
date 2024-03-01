@@ -81,3 +81,12 @@ test('Check that The Default Collection List is Displayed when The Search All of
   await homePage.searchCollectionInput.click();
   await homePage.defaultCollectionComponent.hover();
 });
+
+test('Remove an Item from The Cart', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.listViewMode.click();
+  await homePage.addItemToCartIcon.click();
+  await homePage.cartIcon.click();
+  await homePage.removeCartItem.click();
+  await page.getByText('No items added to cart').click();
+});

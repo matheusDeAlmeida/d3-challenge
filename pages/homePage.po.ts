@@ -21,6 +21,8 @@ export class HomePage {
     readonly filterTab: Locator; 
     readonly buyNowFilterOption: Locator;
     readonly magicEdenFilterOption: Locator; 
+    readonly cartIcon: Locator; 
+    readonly removeCartItem: Locator;
      
 
     constructor(page: Page) {
@@ -43,10 +45,11 @@ export class HomePage {
         this.buyNowFilterOption = page.getByText('Buy now');
         this.magicEdenFilterOption = page.getByText('Magic Eden', { exact: true });
         this.defaultCollectionComponent = page.locator('[data-test-id="virtuoso-top-item-list"]');
+        this.cartIcon = page.locator('[data-test-id="cart-icon"]');
+        this.removeCartItem = page.locator('[data-test-id="cart-container"]').getByRole('img').nth(1);
     }
 
     tableContent(content: string, page: Page){
         return page.getByRole('cell', { name: content, exact: true });
     }
-
 }
