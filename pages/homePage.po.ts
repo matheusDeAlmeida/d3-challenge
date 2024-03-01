@@ -3,7 +3,12 @@ import { Locator, Page, expect } from '@playwright/test';
 export class HomePage {
     readonly page: Page;
     readonly searchCollectionInput: Locator;
+    readonly defaultCollectionComponent: Locator;
+
     readonly listViewMode: Locator;
+    readonly largeIconViewMode: Locator;
+    readonly smallIconViewMode: Locator;
+
     readonly addItemToCartIcon: Locator;
     readonly buyButton: Locator;
     readonly purchaseDialogSolana: Locator;
@@ -20,7 +25,11 @@ export class HomePage {
 
     constructor(page: Page) {
         this.searchCollectionInput = page.getByPlaceholder('Search all of Magic Eden');
+
         this.listViewMode = page.locator('button:nth-child(3)').first();
+        this.largeIconViewMode = page.locator('.tw-hidden > .tw-flex > button:nth-child(2)');
+        this.smallIconViewMode = page.locator('button:nth-child(3)').first();
+
         this.addItemToCartIcon = page.locator('td').first();
         this.buyButton = page.locator('[data-test-id="cart-buy"]');
         this.purchaseDialogSolana = page.locator('[data-test-id="wallet-modal-tab-solana"]');
@@ -33,6 +42,7 @@ export class HomePage {
         this.filterTab = page.getByRole('button', { name: 'Filters' });
         this.buyNowFilterOption = page.getByText('Buy now');
         this.magicEdenFilterOption = page.getByText('Magic Eden', { exact: true });
+        this.defaultCollectionComponent = page.locator('[data-test-id="virtuoso-top-item-list"]');
     }
 
     tableContent(content: string, page: Page){

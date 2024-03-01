@@ -21,7 +21,8 @@ test('Add an Item to the Cart', async ({ page }) => {
   await homePage.addItemToCartIcon.click();
 });
 
-// todo: add validation to this test
+// In this test, I just click to add a Phantom Solana wallet, to do
+// a full test, I would need to add a wallet in the Chromium browser
 test('Connect a Solana Wallet', async ({ page }) => {
   const homePage = new HomePage(page);
   await homePage.listViewMode.click();
@@ -57,4 +58,26 @@ test('Change Filters', async ({ page }) => {
   await homePage.filterTab.click();
   await homePage.buyNowFilterOption.click();
   await homePage.magicEdenFilterOption.click();
+});
+
+test('Change the View Modes for The Collection Items Table', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.listViewMode.click();
+  await homePage.smallIconViewMode.click();
+  await page.getByText('Instant Sell').hover();
+  await homePage.largeIconViewMode.click();
+  await page.getByText('Instant Sell').hover();
+});
+
+test('Search for a Collection that Doesn\'t exist', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.searchCollectionInput.click();
+  await homePage.searchCollectionInput.fill('zcvacvzafd');
+  await page.getByText('No collections found').click();
+});
+
+test('Check that The Default Collection List is Displayed when The Search All of Magic Eden is clicked', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.searchCollectionInput.click();
+  await homePage.defaultCollectionComponent.hover();
 });
