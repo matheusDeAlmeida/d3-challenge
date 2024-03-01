@@ -14,11 +14,12 @@ test('Search for a collection', async ({ page }) => {
   await page.getByRole('heading', { name: collection1 }).click();
 });
 
-// todo: add validation to this test
 test('Add an Item to the Cart', async ({ page }) => {
   const homePage = new HomePage(page);
   await homePage.listViewMode.click();
   await homePage.addItemToCartIcon.click();
+  await homePage.cartIcon.click();
+  await homePage.cartItem.hover();
 });
 
 // In this test, I just click to add a Phantom Solana wallet, to do

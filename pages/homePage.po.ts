@@ -23,6 +23,7 @@ export class HomePage {
     readonly magicEdenFilterOption: Locator; 
     readonly cartIcon: Locator; 
     readonly removeCartItem: Locator;
+    readonly cartItem: Locator;
      
 
     constructor(page: Page) {
@@ -47,6 +48,7 @@ export class HomePage {
         this.defaultCollectionComponent = page.locator('[data-test-id="virtuoso-top-item-list"]');
         this.cartIcon = page.locator('[data-test-id="cart-icon"]');
         this.removeCartItem = page.locator('[data-test-id="cart-container"]').getByRole('img').nth(1);
+        this.cartItem = page.locator('[data-test-id="cart-container"]');
     }
 
     tableContent(content: string, page: Page){
