@@ -1,0 +1,1 @@
+export const collection1 = 'The Doge Pound';
