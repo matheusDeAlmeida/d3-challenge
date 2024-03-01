@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { HomePage } from '../pages';
 import { baseUrl, collection1, offersTableColumns } from '../data';
 
@@ -40,4 +40,21 @@ test('Check The Offers Table', async ({ page }) => {
 
   // Check if 'enable my offers' option is working 
   await homePage.enableMyOffer.click();
+});
+
+test('Share Stats in Twitter', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.shareStatsButton.click();
+  const page1Promise = page.waitForEvent('popup');
+  await homePage.shareInTwitterButton.click();
+  const popUpURL = (await page1Promise).url();
+  expect(popUpURL).toContain('twitter.com');
+});
+
+test('Change Filters', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.filterButton.click();
+  await homePage.filterTab.click();
+  await homePage.buyNowFilterOption.click();
+  await homePage.magicEdenFilterOption.click();
 });
